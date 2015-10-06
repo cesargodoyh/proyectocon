@@ -83,19 +83,12 @@ if [(prim==1) && (segun==2)] || [(prim==2) && (segun==1)]
         at=atr;
         nt=ntr;
     end
-    vectri=zeros(1,s);
     
 end
 
 if [(prim==1) && (segun==3)] || [(prim==3) && (segun==1)]
     disp(' 1 , 3')
-    for i=-m/2:m/s:m/2
-     if [(i<nt/2) && (i>-nt/2)] || [(i>-nt/2) && (i<nt/2)]
-         v=[v at]
-     else
-         v=[v 0]
-     end
-end
+
 end
 
 if [(prim==1) && (segun==4)] || [(prim==4) && (segun==1)]
@@ -103,7 +96,13 @@ if [(prim==1) && (segun==4)] || [(prim==4) && (segun==1)]
 end
 
 if (prim==2) && (segun==2)
-    disp(' 2 , 2')
+    for i=-m/2:m/s:m/2
+     if [(i<np/2) && (i>-np/2)] || [(i>-np/2) && (i<np/2)]
+         v=[v ap]
+     else
+         v=[v 0]
+     end
+end
 end
 
 if [(prim==2) && (segun==3)] || [(prim==3) && (segun==2)]
@@ -124,22 +123,4 @@ end
 
 if (prim==4) && (segun==4)
     disp(' 4 , 4')
-end
-
-
-
-m=input('a) Duracion :' );
-s=input('b) Numero de muestras :');
-y= mod(s,2);                                                                
-if y==1
-    s=s+1;
-end
-at=input('a) Amplitud de la señal:' );                           
-nt=input('b) Soporte de la señal:' );
-c=(m-nt)/2;
-vector=zeros(1,s);
-for i=-m/2:m/s:m/2
-     if -nt/2<c<nt
-        vector=[vector i];
-     end
 end
