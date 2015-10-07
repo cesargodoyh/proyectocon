@@ -99,14 +99,12 @@ end
 
 if (prim==2) && (segun==2)
    for i=-m/2:l:m/2
-       m/s
-       i
      if [(i<npu/2) && (i>-npu/2)] || [(i>-npu/2) && (i<npu/2)]
          vu=[vu apu]
      else
          vu=[vu 0]
      end
-end
+   end
 end
 
 if [(prim==2) && (segun==3)] || [(prim==3) && (segun==2)]
