@@ -3,6 +3,7 @@ clear all;
 c=1;at=0;atr=0;ntr=0;ap=0;nt=0;apu=0;nr=0;ar=0;ara=0;nra=0;ai=0;aim=0;np=0;npu=0;vu=[];vd=[];
 disp('para las señales que desee realizar la convolucion, elija: ')
 m=input('a) Duracion :' );                                                  % (m) es la la duracion que es igual para las dos señales
+mover=-m/2;
 s=input('b) Numero de muestras :');                                         % (s) es el numero de muestras, que es igual para las dos señales
 y= mod(s,2);                                                                
 if y==0
@@ -100,11 +101,23 @@ end
 if (prim==2) && (segun==2)
    for i=-m/2:l:m/2
      if [(i<npu/2) && (i>-npu/2)] || [(i>-npu/2) && (i<npu/2)]
-         vu=[vu apu]
+         vu=[vu apu];
      else
-         vu=[vu 0]
+         vu=[vu 0];
      end
    end
+   for i=-m/2:l:m/2
+    vd=[];
+   for t=-m/2:l:m/2
+   if t==mover
+       vd=[vd apu];
+   else
+       vd=[vd 0];
+   end
+   end
+   mover=mover+l;
+  % pause(1)
+end
 end
 
 if [(prim==2) && (segun==3)] || [(prim==3) && (segun==2)]
