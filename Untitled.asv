@@ -136,8 +136,12 @@ if [(prim==2) && (segun==4)] || [(prim==4) && (segun==2)]
      else
          vu=[vu 0];
      end
-   end
+       end
+   ejex=-m/2:l:m/2;
+  
    for i=-m/2:l:m/2
+       stem(ejex,vu)
+        hold on
     vd=[];
    for t=-m/2:l:m/2
    if t==mover
@@ -147,8 +151,8 @@ if [(prim==2) && (segun==4)] || [(prim==4) && (segun==2)]
    end
    end
    mover=mover+l;
-   ejex=-5:1/10:5
-   plot=plot(ejex,vu)
+   stem(ejex,vd)
+    hold off
   pause(1)
 end
 end
