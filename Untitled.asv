@@ -95,7 +95,42 @@ if [(prim==1) && (segun==3)] || [(prim==3) && (segun==1)]
 end
 
 if [(prim==1) && (segun==4)] || [(prim==4) && (segun==1)]
-    disp(' 1 , 4')
+    ejex=-m/2:l:m/2;
+    if ntr==0
+         ntr=nt;
+         atr=at;
+         ai=aim;
+    end
+    vu=tripuls(ejex,ntr)
+    % t=-5:1/10:5
+% salida=tripuls(t,3)
+% plot(t,salida)
+%salida=salida*2;
+for i=-m/2:l:m/2
+     if [(i<npu/2) && (i>-npu/2)] || [(i>-npu/2) && (i<npu/2)]
+         vu=[vu apu];
+     else
+         vu=[vu 0];
+     end
+       end
+   ejex=-m/2:l:m/2;
+ 
+ for t=1:1:s
+    vd=zeros(1,s);
+    subplot(2,1,1)
+    stem(ejex,vu)
+    title('señal pulso fija y señal impulso se mueve');
+    hold on
+    vd(t)=ai;
+    stem(ejex,vd)
+    hold off
+    pause(0.01)
+    vt=vu.*vd;
+    subplot(2,1,2)
+    title('convolucion de las señales');
+    stem(ejex,vt)
+    hold on
+ end
 end
 
 if (prim==2) && (segun==2)
@@ -166,14 +201,9 @@ if [(prim==3) && (segun==4)] || [(prim==4) && (segun==3)]
 end
 
 if (prim==4) && (segun==4)
-        if npu==0
-         npu=np;
-         apu=ap;
-         ai=aim;
-     end
-       for i=-m/2:l:m/2
-     if [(i<npu/2) && (i>-npu/2)] || [(i>-npu/2) && (i<npu/2)]
-         vu=[vu apu];
+     for i=-m/2:l:m/2
+     if i==0;
+         vu=[vu aim];
      else
          vu=[vu 0];
      end
