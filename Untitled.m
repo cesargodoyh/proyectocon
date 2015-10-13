@@ -166,5 +166,29 @@ if [(prim==3) && (segun==4)] || [(prim==4) && (segun==3)]
 end
 
 if (prim==4) && (segun==4)
-    disp(' 4 , 4')
+     for i=-m/2:l:m/2
+     if i==0;
+         vu=[vu aim];
+     else
+         vu=[vu 0];
+     end
+       end
+   ejex=-m/2:l:m/2;
+ 
+ for t=1:1:s
+    vd=zeros(1,s);
+    subplot(2,1,1)
+    stem(ejex,vu)
+    title('señal pulso fija y señal impulso se mueve');
+    hold on
+    vd(t)=ai;
+    stem(ejex,vd)
+    hold off
+    pause(0.01)
+    vt=vu.*vd;
+    subplot(2,1,2)
+    title('convolucion de las señales');
+    stem(ejex,vt)
+    hold on
+ end
 end
