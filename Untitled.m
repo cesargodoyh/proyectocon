@@ -137,23 +137,27 @@ if [(prim==2) && (segun==4)] || [(prim==4) && (segun==2)]
          vu=[vu 0];
      end
        end
-   ejex=-m/2:l:m/2
+   ejex=-m/2:l:m/2;
   
-   for i=-m/2:l:m/2
-       stem(ejex,vu)
-        hold on
+for i=-m/2:l:m/2
+    stem(ejex,vu)
+    hold on
     vd=[];
    for t=-m/2:l:m/2
+       t
+       mover       
    if t==mover
        vd=[vd ai];
+       1
    else
        vd=[vd 0];
+       2
    end
    end
    mover=mover+l;
    stem(ejex,vd)
-    hold off
-  pause(1)
+   hold off
+   pause(1)
 end
 end
 
