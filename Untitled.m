@@ -93,7 +93,9 @@ if [(prim==1) && (segun==2)] || [(prim==2) && (segun==1)]
     vu=tripuls(ejex,ntr);
     vu=vu*atr;
  while t<(1+n)
-    vtotal=[vtotal 0];
+    vt=vu.*vd;
+    vt=sum(vt);
+    vtotal=[vtotal vt];
     t=t+1;
     end           
 
@@ -113,8 +115,10 @@ for t=1+n:1:s-n
 end
 
 while t<s
-    vtotal=[vtotal 0];
-    t=t+1;        
+    vt=vu.*vd;
+    vt=sum(vt);
+    vtotal=[vtotal vt];
+    t=t+1        
 end
 subplot(2,1,2)
 title('convolucion de las señales');
@@ -167,6 +171,7 @@ if (prim==2) && (segun==2)
  while t<(1+n)
     vtotal=[vtotal 0];
     t=t+1;
+    f=t;
     end           
 
 for t=1+n:1:s-n
@@ -185,9 +190,11 @@ for t=1+n:1:s-n
 end
 
 while t<s
-    vtotal=[vtotal 0];
+     vt=sum(vt);
+    vtotal=[vtotal vt];
     t=t+1;        
 end
+vtotal(1:f)=vt
 subplot(2,1,2)
 title('convolucion de las señales');
     stem(ejex,vtotal)
