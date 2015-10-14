@@ -195,10 +195,10 @@ while t<s
 end
 vtotal(1:f)=vt
 subplot(2,1,2)
-title('convolucion de las señales');
     stem(ejex,vtotal)
+    title('convolucion de las señales');
 end
-%----------------------------------------
+
 if [(prim==2) && (segun==3)] || [(prim==3) && (segun==2)]
    if nra==0
          nra=nr;
@@ -245,11 +245,10 @@ while t<s
     t=t+1;        
 end
 subplot(2,1,2)
+stem(ejex,vtotal)
 title('convolucion de las señales');
-    stem(ejex,vtotal)
-       
 end
-%-------------------------------------------
+
 if [(prim==2) && (segun==4)] || [(prim==4) && (segun==2)]
      if npu==0
          npu=np;
@@ -288,7 +287,38 @@ if (prim==3) && (segun==3)
 end
 
 if [(prim==3) && (segun==4)] || [(prim==4) && (segun==3)]
-    disp(' 3 , 4')
+     if nra==0
+         nra=nr;
+         ara=ar;
+         ai=aim;
+   end
+   ejex=-m/2:l:m/2;
+   pendiente=ara/nra;
+      
+    for i=-m/2:l:m/2
+     if [(i<nra) && (i>0)] || [(i>0) && (i<nra)]
+         y=pendiente*i;         
+         vu=[vu y];
+     else
+         vu=[vu 0];
+     end
+    end
+     for t=1:1:s
+    vd=zeros(1,s);
+    subplot(2,1,1)
+    stem(ejex,vu)
+    title('señal rampa fija y señal impulso se mueve');
+    hold on
+    vd(t)=ai;
+    stem(ejex,vd)
+    hold off
+    pause(0.01)
+    vt=vu.*vd;
+    subplot(2,1,2)
+    title('convolucion de las señales');
+    stem(ejex,vt)
+    hold on
+ end
 end
 
 if (prim==4) && (segun==4)
