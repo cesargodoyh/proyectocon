@@ -154,6 +154,8 @@ if [(prim==1) && (segun==4)] || [(prim==4) && (segun==1)]
 end
 
 if (prim==2) && (segun==2)
+    ejex=-m/2:l:m/2;
+    n=np/(2*l);
    for i=-m/2:l:m/2
      if [(i<npu/2) && (i>-npu/2)] || [(i>-npu/2) && (i<npu/2)]
          vu=[vu apu];
@@ -161,18 +163,34 @@ if (prim==2) && (segun==2)
          vu=[vu 0];
      end
    end
-   for i=-m/2:l:m/2
-    vd=[];
-   for t=-m/2:l:m/2
-   if t==mover
-       vd=[vd apu];
-   else
-       vd=[vd 0];
-   end
-   end
-   mover=mover+l;
-  % pause(1)
+  
+ while t<(1+n)
+    vtotal=[vtotal 0];
+    t=t+1;
+    end           
+
+for t=1+n:1:s-n
+    vd=zeros(1,s);
+    subplot(2,1,1)
+    stem(ejex,vu)
+    title('señal pulso fija y señal pulso se mueve');
+    hold on
+    vd(t-n:t+n)=ap;
+    stem(ejex,vd)
+    hold off
+    pause(0.01)
+    vt=vu.*vd;
+    vt=sum(vt);
+    vtotal=[vtotal vt];
 end
+
+while t<s
+    vtotal=[vtotal 0];
+    t=t+1;        
+end
+subplot(2,1,2)
+title('convolucion de las señales');
+    stem(ejex,vtotal)
 end
 
 if [(prim==2) && (segun==3)] || [(prim==3) && (segun==2)]
