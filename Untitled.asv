@@ -118,7 +118,7 @@ while t<s
     vt=vu.*vd;
     vt=sum(vt);
     vtotal=[vtotal vt];
-    t=t+1;        
+    t=t+1        
 end
 subplot(2,1,2)
 title('convolucion de las señales');
@@ -206,14 +206,8 @@ if [(prim==2) && (segun==3)] || [(prim==3) && (segun==2)]
          ap=apu;
          na=npu;
    end
-   n=np/(2*l);
    ejex=-m/2:l:m/2;
    pendiente=ara/nra;
-    while t<(1+n)
-    vtotal=[vtotal 0];
-    t=t+1;
-    f=t;
-    end    
     for i=-m/2:l:m/2
      if [(i<nra) && (i>0)] || [(i>0) && (i<nra)]
          y=pendiente*i;         
@@ -227,7 +221,7 @@ for t=1+n:1:s-n
     vd=zeros(1,s);
     subplot(2,1,1)
     stem(ejex,vu)
-    title('señal rampa fija y señal pulso se mueve');
+    title('señal triangulo fija y señal pulso se mueve');
     hold on
     vd(t-n:t+n)=ap;
     stem(ejex,vd)
@@ -242,7 +236,7 @@ while t<s
     vt=vu.*vd;
     vt=sum(vt);
     vtotal=[vtotal vt];
-    t=t+1;        
+    t=t+1        
 end
 subplot(2,1,2)
 title('convolucion de las señales');
