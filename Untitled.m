@@ -1,6 +1,6 @@
 clc;
 clear all;
-c=1;at=0;atr=0;ntr=0;ap=0;nt=0;apu=0;nr=0;ar=0;ara=0;nra=0;ai=0;aim=0;np=0;npu=0;vu=[];vt=[];
+t=1;c=1;at=0;atr=0;ntr=0;ap=0;nt=0;apu=0;nr=0;ar=0;ara=0;nra=0;ai=0;aim=0;np=0;npu=0;vu=[];vt=[];vtotal=[];
 disp('para las señales que desee realizar la convolucion, elija: ')
 m=input('a) Duracion :' );                                                  % (m) es la la duracion que es igual para las dos señales
 mover=-m/2;
@@ -89,28 +89,37 @@ if [(prim==1) && (segun==2)] || [(prim==2) && (segun==1)]
          ap=apu;
          np=npu;
     end
-    n=np/l;
+    n=np/(2*l);
     vu=tripuls(ejex,ntr);
     vu=vu*atr;
-for t=1:1:s-n
+ while t<(1+n)
+    vtotal=[vtotal 0];
+    t=t+1;
+    end           
+
+for t=1+n:1:s-n
     vd=zeros(1,s);
     subplot(2,1,1)
     stem(ejex,vu)
     title('señal triangulo fija y señal pulso se mueve');
     hold on
-    vd(t:t+n)=ap;
+    vd(t-n:t+n)=ap;
     stem(ejex,vd)
     hold off
     pause(0.01)
     vt=vu.*vd;
-    subplot(2,1,2)
-    title('convolucion de las señales');
-    stem(ejex,vt)
-    hold on
-end
-    
+    vt=sum(vt);
+    vtotal=[vtotal vt];
 end
 
+while t<s
+    vtotal=[vtotal 0];
+    t=t+1;        
+end
+subplot(2,1,2)
+title('convolucion de las señales');
+    stem(ejex,vtotal)
+end
 if [(prim==1) && (segun==3)] || [(prim==3) && (segun==1)]
     disp(' 1 , 3')
 
@@ -130,7 +139,7 @@ if [(prim==1) && (segun==4)] || [(prim==4) && (segun==1)]
     vd=zeros(1,s);
     subplot(2,1,1)
     stem(ejex,vu)
-    title('señal pulso fija y señal impulso se mueve');
+    title('señal triangulo fija y señal impulso se mueve');
     hold on
     vd(t)=ai;
     stem(ejex,vd)
@@ -225,7 +234,7 @@ if (prim==4) && (segun==4)
     vd=zeros(1,s);
     subplot(2,1,1)
     stem(ejex,vu)
-    title('señal pulso fija y señal impulso se mueve');
+    title('señal impulso fija y señal impulso se mueve');
     hold on
     vd(t)=ai;
     stem(ejex,vd)
