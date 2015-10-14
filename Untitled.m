@@ -10,7 +10,7 @@ if y==0
     l=m/s;
     s=s+1;
 else
-    l=m/(s-1)
+    l=m/(s-1);
 end
 
 while c<3
@@ -82,10 +82,32 @@ if (prim==1) && (segun==1)
 end
 
 if [(prim==1) && (segun==2)] || [(prim==2) && (segun==1)]
-    if at==0
-        at=atr;
-        nt=ntr;
+   ejex=-m/2:l:m/2;
+    if ntr==0
+         ntr=nt;
+         atr=at;
+         ap=apu;
+         np=npu;
     end
+    n=np/l;
+    vu=tripuls(ejex,ntr);
+    vu=vu*atr;
+for t=1:1:s-n
+    vd=zeros(1,s);
+    subplot(2,1,1)
+    stem(ejex,vu)
+    title('señal triangulo fija y señal pulso se mueve');
+    hold on
+    vd(t:t+n)=ap;
+    stem(ejex,vd)
+    hold off
+    pause(0.01)
+    vt=vu.*vd;
+    subplot(2,1,2)
+    title('convolucion de las señales');
+    stem(ejex,vt)
+    hold on
+end
     
 end
 
